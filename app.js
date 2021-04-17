@@ -52,10 +52,9 @@ app.post('/upload', upload.array('file', 100), (req, res, next) => {
     status: true
   })
 
-  next();
-
+  res.redirect('uphandle')
 })
-app.post('/upload', fileHandleRouter);
+app.post('/uphandle', fileHandleRouter);
 
 app.use('/', homeRouter);
 

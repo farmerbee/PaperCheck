@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
     } else {
         ipList.add(reqIp);
         let targetDir = `${getDir('uploads')}/${reqIp}`;
-        if(fs.accessSync(targetDir)){
+        if(!fs.accessSync(targetDir)){
             fs.mkdirSync(targetDir);
         }
         res.sendFile(path.join(getDir('views'), 'ai.html'));
