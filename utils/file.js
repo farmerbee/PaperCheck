@@ -65,15 +65,28 @@ const readDocx = async function (pathName) {
 }
 
 
-// const ath = '/home/lighthouse/aiserver/entry/uploads/182.150.122.5/txt.docx';
-// const splitContents = require('./splitContents');
+// const ath = '/home/lighthouse/PaperCheck/uploads/182.150.122.5/3200604004_张应驰_简述内核内存管理器.doc';
+// // const splitContents = require('./splitContents');
 // (async()=>{
-//     const contents = await readDocx(ath);
+//     const contents = await readFile(ath);
 //     // res = splitContents(contents,/[,|.|，|。|；.*?]/);
-//     res = splitContents(contents);
-
-//     res.forEach(v => console.log(v))
+//     // res = splitContents(contents);
+//     console.log('ok');
+//     // res.forEach(v => console.log(v))
 // })()
+
+async function readFile(pathName){
+    let fileType = await getFileType(pathName);
+    let contents = '';
+    if(fileType == 'docx'){
+        contents = await readDocx(pathName);
+    }else if(fileType == 'doc'){
+        contents = await readDoc(pathName);
+    }
+
+    return contents;
+}
+
 
 
 exports.fileType = fileType;

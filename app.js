@@ -22,12 +22,15 @@ const storage = multer.diskStorage({
 })
 // const upload = multer({ dest: 'uploads/' });
 const upload = multer({ storage: storage });
+const upFiles = [];
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+// app.enable('query parser');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -46,12 +49,11 @@ app.post('/upload', upload.array('file', 100), (req, res, next) => {
       message: 'no file recieved'
     })
   }
-  // res.json({
-  //   status: true
-  // })
-  // res.sendStatus(200);
 
-  res.redirect('/uphandle')
+  // upFiles.push(req.files.values().next().value.originalname);
+  let fileName = req.files.values().next().value.originalname;
+  // console.log(upFiles);
+  res.redirect(`/index?name=${fileName}`);
 
 
 })
@@ -77,3 +79,4 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+// exports.upFiles = upFiles;

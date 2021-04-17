@@ -24,3 +24,7 @@ const paths = ['/home/lighthouse/PaperCheck/uploads/182.150.122.5/王紫轩_3200
 	console.log(results);
 	console.log(`time used ${(Date.now() - start) / 1000} seconds`);
 })()
+
+async function CheckFile(path){
+
+}
