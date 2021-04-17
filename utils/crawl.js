@@ -46,8 +46,8 @@ async function clickSearch(keyword, browser) {
         // })
 
         // console.clear();
-        Symbol = Math.random() > 0.5 ? '*.*' : '-.-';
-        console.log(Symbol);
+        // Symbol = Math.random() > 0.5 ? '*.*' : '-.-';
+        // console.log(Symbol);
         // 解析返回的网页
         result = await page.$eval('body', function (document) {
             // 百度检索无结果，则返回为空数组
@@ -101,6 +101,7 @@ async function clickSearch(keyword, browser) {
             }
         });
 
+        console.log(keyword, result)
 
         await page.close();
 
@@ -120,9 +121,16 @@ async function clickSearch(keyword, browser) {
 //对关键字序列进行检索，返回重复度number值，精确到小数点后两位
 async function searchThread(keyList, concurrency) {
     
+    const proxy = await get_proxy('http://localhost:5555/random')
+    console.log(proxy);
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        args:[
+            `--proxy-server=${proxy}`
+        ]
+    });
 
+    // const browser = await puppeteer.launch();
     let res = await concurrentRun(clickSearch, concurrency, keyList, browser);
     // console.log(sentenceMath(res))
     await browser.close();

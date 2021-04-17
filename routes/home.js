@@ -15,6 +15,7 @@ router.get('/', (req, res, next) => {
     } else {
         ipList.add(reqIp);
         let targetDir = `${getDir('uploads')}/${reqIp}`;
+        console.log(targetDir);
         if(!fs.accessSync(targetDir)){
             fs.mkdirSync(targetDir);
         }

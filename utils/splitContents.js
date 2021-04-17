@@ -1,6 +1,8 @@
 
+
 // 分割文档文本，返回文档片段组成字符串数组
-const splitContents = function (contents, delimiters=/[,|.|;|，|。|；.*?]/) {
+// const splitContents = function (contents, delimiters=/[,|.|;|，|。|；.*?]/) {
+const splitContents = function(contents, delimiters=/[;|；|。.*?]/){
     const referList = ['参考', '参考：', '参考:',
         '参考文献', '参考文献:', '参考文献：'
     ]

@@ -1,8 +1,9 @@
-const { readDocx } = require('./file');
+const { readDocx , readDoc} = require('./file');
 const searchThread = require('./crawl');
 const splitContents = require('./splitContents');
 
-const paths = ['/home/lighthouse/aiserver/entry/uploads/182.150.122.5/大数据的5大核心技术 - Copy (4).docx'];
+
+const paths = ['/home/lighthouse/PaperCheck/uploads/182.150.122.5/何宇辰_3200604002_工学1班_AI在智慧医疗行业调查报告.docx'];
 
 (async () => {
 	let start = Date.now();
