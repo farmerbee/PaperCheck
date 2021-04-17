@@ -9,19 +9,19 @@ const fs = require('fs');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const {ipList, router:homeRouter} = require('./routes/home');
+const { ipList, router: homeRouter } = require('./routes/home');
 const fileHandleRouter = require('./routes/uphandle');
 
 const storage = multer.diskStorage({
   // destination: `${__dirname}/uploads`,
-  destination:(req, file, cb) => {
+  destination: (req, file, cb) => {
     let reqIp = req.ip.split(':').pop();
-    cb(null, `${__dirname}/uploads/${reqIp}/`); 
+    cb(null, `${__dirname}/uploads/${reqIp}/`);
   },
-  filename: (req, file, cb) => cb(null,file.originalname)
+  filename: (req, file, cb) => cb(null, file.originalname)
 })
 // const upload = multer({ dest: 'uploads/' });
-const upload = multer({storage: storage});
+const upload = multer({ storage: storage });
 
 var app = express();
 
@@ -46,15 +46,16 @@ app.post('/upload', upload.array('file', 100), (req, res, next) => {
       message: 'no file recieved'
     })
   }
- 
+  // res.json({
+  //   status: true
+  // })
+  // res.sendStatus(200);
 
-  res.json({
-    status: true
-  })
+  res.redirect('/uphandle')
 
-  res.redirect('uphandle')
+
 })
-app.post('/uphandle', fileHandleRouter);
+app.get('/uphandle', fileHandleRouter);
 
 app.use('/', homeRouter);
 

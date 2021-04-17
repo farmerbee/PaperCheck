@@ -1,7 +1,7 @@
 const { wordsMath, sentenceMath } = require('./wordMath');
 const concurrentRun = require('./concurrent');
 const puppeteer = require('puppeteer');
-
+const fs = require('fs').promises;
 
 // 检索关键字，返回包含原始长度和最大匹配长度的数组
 async function clickSearch(keyword, browser) {
@@ -53,7 +53,7 @@ async function clickSearch(keyword, browser) {
             // 百度检索无结果，则返回为空数组
             const noContent = document.querySelector('.content_none');
             if (noContent) {
-                return ['null'];
+                return [''];
             }
             // 响应页为检索结果的条目
             // 不包含广告推广
@@ -101,7 +101,12 @@ async function clickSearch(keyword, browser) {
             }
         });
 
-        console.log(keyword, result)
+    
+        // await fs.writeFile('result.txt', [keyword, result].toString(), {
+        //     flag: 'a'
+        // });
+        // console.log(keyword, result)
+        console.log('*');
 
         await page.close();
 
@@ -109,7 +114,7 @@ async function clickSearch(keyword, browser) {
         // console.log(error);
     }
 
-    // console.log(result);
+    console.log(result);
 
     let matchCount = wordsMath(keyword, result);
 
@@ -120,7 +125,7 @@ async function clickSearch(keyword, browser) {
 
 //对关键字序列进行检索，返回重复度number值，精确到小数点后两位
 async function searchThread(keyList, concurrency) {
-    
+    console.log(keyList.length); 
     const proxy = await get_proxy('http://localhost:5555/random')
     console.log(proxy);
 

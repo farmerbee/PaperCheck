@@ -3,7 +3,7 @@ const searchThread = require('./crawl');
 const splitContents = require('./splitContents');
 
 
-const paths = ['/home/lighthouse/PaperCheck/uploads/182.150.122.5/何宇辰_3200604002_工学1班_AI在智慧医疗行业调查报告.docx'];
+const paths = ['/home/lighthouse/PaperCheck/uploads/182.150.122.5/王紫轩_3200604003.doc'];
 
 (async () => {
 	let start = Date.now();
@@ -11,7 +11,7 @@ const paths = ['/home/lighthouse/PaperCheck/uploads/182.150.122.5/何宇辰_3200
 	for (let i = 0; i < paths.length; i++) {
 		let path = paths[i];
 		let start = Date.now();
-		let contents = await readDocx(path);
+		let contents = await readDoc(path);
 		let frags = splitContents(contents);
 		contents = null;
 		const res = await searchThread(frags, 15);

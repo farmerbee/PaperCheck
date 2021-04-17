@@ -4,7 +4,7 @@
 // const splitContents = function (contents, delimiters=/[,|.|;|，|。|；.*?]/) {
 const splitContents = function(contents, delimiters=/[;|；|。.*?]/){
     const referList = ['参考', '参考：', '参考:',
-        '参考文献', '参考文献:', '参考文献：'
+        '参考文献', '参考文献:', '参考文献：', 'References（参考文献）', 'References (参考文献),'
     ]
     const fragments = [];
     // 通过换行符分割文本
