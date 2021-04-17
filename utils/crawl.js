@@ -102,7 +102,7 @@ async function clickSearch(keyword, browser) {
         });
 
     
-        // await fs.writeFile('result.txt', [keyword, result].toString(), {
+        // await fs.writeFile('result.txt', 'key:'+keyword+'\tvalues:'+result+'\n\n', {
         //     flag: 'a'
         // });
         // console.log(keyword, result)

@@ -93,7 +93,7 @@ exports.fileType = fileType;
 exports.readDoc = readDoc;
 exports.readDocx = readDocx;
 exports.readDir = readDir;
-
+exports.readFile = readFile;
 
 
 
