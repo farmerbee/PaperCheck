@@ -126,16 +126,16 @@ async function clickSearch(keyword, browser) {
 //对关键字序列进行检索，返回重复度number值，精确到小数点后两位
 async function searchThread(keyList, concurrency) {
     console.log(keyList.length); 
-    const proxy = await get_proxy('http://localhost:5555/random')
-    console.log(proxy);
+    // const proxy = await get_proxy('http://localhost:5555/random')
+    // console.log(proxy);
 
-    const browser = await puppeteer.launch({
-        args:[
-            `--proxy-server=${proxy}`
-        ]
-    });
+    // const browser = await puppeteer.launch({
+    //     args:[
+    //         `--proxy-server=${proxy}`
+    //     ]
+    // });
 
-    // const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch();
     let res = await concurrentRun(clickSearch, concurrency, keyList, browser);
     // console.log(sentenceMath(res))
     await browser.close();

@@ -3,7 +3,7 @@ const searchThread = require('./crawl');
 const splitContents = require('./splitContents');
 
 
-const path = '/home/lighthouse/PaperCheck/uploads/182.150.122.5/3200604001-史奎锐-嵌入式系统论文.docx';
+const path = '/home/lighthouse/PaperCheck/uploads/182.150.122.5/文成江_3200607036_电信1班_AI在目标检测行业调查报告.doc';
 
 // (async () => {
 // 	let start = Date.now();
@@ -33,7 +33,9 @@ async function checkFile(path){
 	return matchDegree;
 }
 
-(async () => {
-	res = await checkFile(path);
-	console.log(res);
-})()
+// (async () => {
+// 	res = await checkFile(path);
+// 	console.log(res);
+// })()
+
+module.exports = checkFile;

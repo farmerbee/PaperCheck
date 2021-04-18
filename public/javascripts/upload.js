@@ -2,7 +2,9 @@
     const oUploadElm = document.getElementById('files'),
         oLabel = document.getElementsByClassName('input-label')[0],
         oUploadInfo = document.getElementsByClassName('upload-info')[0],
-        oUploadCounter = document.getElementsByClassName('upload-counter')[0];
+        oUploadCounter = document.getElementsByClassName('upload-counter')[0],
+        oTable = document.getElementsByClassName('result-tb')[0],
+        oLoading = document.getElementsByClassName('loading-mod')[0];
 
     function init() {
         bindEvent();
@@ -28,7 +30,8 @@
         }, 1000);
         Array.prototype.forEach.call(files, (file, index) => {
             const fileName = file.name;
-            if(!fileName.endsWith('.doc') && !fileName.endsWith('.docx')){
+            if (!fileName.endsWith('.doc') && !fileName.endsWith('.docx')) {
+                alert(`只支持doc,docx文件，${fileName}文件类型错误`)
                 counter++;
                 return
             }
@@ -44,14 +47,46 @@
                 }
             }
 
-            xhr.onreadystatechange = function(){
-                // console.log(xhr.status)
+            xhr.onreadystatechange = function () {
+                // if(xhr.status == 200){
+                // window.location = '/index';
+                // }
+                console.log('end');
+                oTable.className += ' active';
+                oLoading.className += ' active';
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET', `/index?${fileName}`);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        console.log(xhr.responseText);
+                    }
+                }
+
+                xhr.send();
+
+
+
+
+                // let recurPost = setInterval(() => {
+                //     let xhr = new XMLHttpRequest();
+                //     xhr.open('GET', `/index?${fileName}`);
+                //     xhr.onreadystatechange = function(){
+                //         if(xhr.readyState == 4){
+                //             console.log(xhr.responseText);
+                //         }
+                //     }
+
+                //     xhr.send();
+
+                // }, 1000);
             }
 
             xhr.send(fd);
         })
 
     }
+
+
 
     window.onload = function () {
         init();

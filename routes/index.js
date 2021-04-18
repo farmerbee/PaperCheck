@@ -1,20 +1,31 @@
 var express = require('express');
 var router = express.Router();
-const path  = require('path');
+const path = require('path');
+const checkFile = require('../utils/checkFile');
 
 
-const {getDir} = require('../utils/path');
+const { getDir } = require('../utils/path');
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   const reqIp = req.ip.split(':').pop();
-  let fileName = req.query.name;
-  let targetFile =  path.join(getDir('uploads'), `${reqIp}`, `${fileName}`);
+  if (req.query.name) {
+    let fileName = req.query.name;
+    console.log(fileName);
+    res.send('ok')
+    let targetFile = path.join(getDir('uploads'), `${reqIp}`, `${fileName}`);
+  }
 
+  // res.send('ol');
+  // res.sendFile(path.join(getDir('views'), 'index.html'));
+  // res.sendFile(path.join(__dirname, '..', 'views', 'index.html'));
+  // res.status(200);
 
-  
-  console.log('index',  fileName);
-  res.sendFile(path.join(__dirname, '..', 'views', 'ai.html'));
+  /* TODO */
+
+  // res.redirect('/load');
+  // res.send('ok');
   // res.send('ok');
 });
+
 
 module.exports = router;

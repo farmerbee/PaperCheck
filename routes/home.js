@@ -21,7 +21,8 @@ router.get('/', (req, res, next) => {
         } catch (error) {
             fs.mkdirSync(targetDir);
         }
-        res.sendFile(path.join(getDir('views'), 'ai.html'));
+        // res.sendFile(path.join(getDir('views'), 'ai.html'));
+        res.sendFile(path.join(__dirname, '..', 'views', 'ai.html'))
     }
 
 })

@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font:normal;
 }
 
 ul {
@@ -28,9 +29,9 @@ a {
     margin: 2em auto;
     padding: 1em 0 0 2em;
     width: 800px;
+    height: 5em;
     text-align: center;
     font-size: 14px;
-    /* background-color: rgb(230, 255, 230); */
 }
 
 .form-wrap .upload-info.active,
@@ -59,4 +60,68 @@ a {
 
 .form-wrap input{
     display: none;
+}
+
+
+.list-wrap {
+    margin: 0 auto ;
+    width: 80%;
+    height: 100%;
+    /* border: 1px solid black; */
+}
+
+table caption{
+    margin: 1em auto;
+    caption-side: top;
+    text-align: center;
+    font-weight: 900;
+}
+
+table th,
+table td{
+    width: 300px;
+    padding: .25em;
+    border: 1px solid #000;
+    font-weight: 400;
+}
+
+table th:first-child,
+table td:first-child{
+    width: 80%;
+}
+
+.result-tb.active{
+    display: table;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1mm ridge rgba(170, 220, 220, .6);
+}
+
+.result-tb {
+    display: none;
+}
+
+.loading-mod.active{
+    display: block;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(250, 250, 250, .8);
+}
+
+.loading-mod{
+    display: none;
+}
+
+.loading-mod .fa-spinner{
+    position: fixed;
+    top:40%;
+    left: 48%;
+}
+
+.loading-mod .fa-spinner::before{
+    font-size: 4em;
+    color: #7B7;
 }

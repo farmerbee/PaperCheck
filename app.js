@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-app.use('/index', indexRouter);
+app.use('/index*', indexRouter);
 app.use('/users', usersRouter);
 app.post('/upload', upload.array('file', 100), (req, res, next) => {
   if (!req.files) {
@@ -53,10 +53,14 @@ app.post('/upload', upload.array('file', 100), (req, res, next) => {
   // upFiles.push(req.files.values().next().value.originalname);
   let fileName = req.files.values().next().value.originalname;
   // console.log(upFiles);
-  res.redirect(`/index?name=${fileName}`);
+  res.send('dfa');
+  // res.redirect('/index');
+  // res.redirect(`/index?name=${fileName}`);
+  // next();
 
 
 })
+// app.use('/upload', indexRouter)
 app.get('/uphandle', fileHandleRouter);
 
 app.use('/', homeRouter);
