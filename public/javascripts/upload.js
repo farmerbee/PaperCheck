@@ -28,6 +28,8 @@
                 oUploadInfo.className = 'upload-info';
             }
         }, 1000);
+
+
         Array.prototype.forEach.call(files, (file, index) => {
             const fileName = file.name;
             if (!fileName.endsWith('.doc') && !fileName.endsWith('.docx')) {
@@ -48,31 +50,18 @@
             }
 
             xhr.onreadystatechange = function () {
-                // if(xhr.status == 200){
-                // window.location = '/index';
-                // }
-                // console.log('end');
-                // oTable.className += ' active';
-                // oLoading.className += ' active';
-                // let xhr = new XMLHttpRequest();
-                // xhr.open('GET', `/index?name=${fileName}`);
-                // xhr.onreadystatechange = function () {
-                //     if (xhr.readyState == 4) {
-                //         console.log(xhr.responseText);
-                //     }
-                // }
-
-                // xhr.send();
-
-
+                oTable.className += ' active';
+                oLoading.className += ' active';
 
                 if (xhr.readyState == 4) {
-                    let recurPost = setInterval(() => {
+                    let recurReq = setInterval(() => {
                         let xhr = new XMLHttpRequest();
-                        xhr.open('GET', `/index?${fileName}`);
+                        xhr.open('GET', `/index?name=${fileName}`);
                         xhr.onreadystatechange = function () {
                             if (xhr.readyState == 4) {
+                                console.log(xhr.status);
                                 console.log(xhr.responseText);
+                                clearInterval(recurReq);
                             }
                         }
 
