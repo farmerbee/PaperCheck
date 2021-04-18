@@ -51,34 +51,35 @@
                 // if(xhr.status == 200){
                 // window.location = '/index';
                 // }
-                console.log('end');
-                oTable.className += ' active';
-                oLoading.className += ' active';
-                let xhr = new XMLHttpRequest();
-                xhr.open('GET', `/index?${fileName}`);
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
-                        console.log(xhr.responseText);
-                    }
-                }
-
-                xhr.send();
-
-
-
-
-                // let recurPost = setInterval(() => {
-                //     let xhr = new XMLHttpRequest();
-                //     xhr.open('GET', `/index?${fileName}`);
-                //     xhr.onreadystatechange = function(){
-                //         if(xhr.readyState == 4){
-                //             console.log(xhr.responseText);
-                //         }
+                // console.log('end');
+                // oTable.className += ' active';
+                // oLoading.className += ' active';
+                // let xhr = new XMLHttpRequest();
+                // xhr.open('GET', `/index?name=${fileName}`);
+                // xhr.onreadystatechange = function () {
+                //     if (xhr.readyState == 4) {
+                //         console.log(xhr.responseText);
                 //     }
+                // }
 
-                //     xhr.send();
+                // xhr.send();
 
-                // }, 1000);
+
+
+                if (xhr.readyState == 4) {
+                    let recurPost = setInterval(() => {
+                        let xhr = new XMLHttpRequest();
+                        xhr.open('GET', `/index?${fileName}`);
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState == 4) {
+                                console.log(xhr.responseText);
+                            }
+                        }
+
+                        xhr.send();
+
+                    }, 1000);
+                }
             }
 
             xhr.send(fd);

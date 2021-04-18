@@ -11,10 +11,13 @@ router.get('/', function (req, res, next) {
   if (req.query.name) {
     let fileName = req.query.name;
     console.log(fileName);
-    res.send('ok')
     let targetFile = path.join(getDir('uploads'), `${reqIp}`, `${fileName}`);
   }
 
+  res.json({
+    name:'dfsdf',
+    ratio: 20
+  })
   // res.send('ol');
   // res.sendFile(path.join(getDir('views'), 'index.html'));
   // res.sendFile(path.join(__dirname, '..', 'views', 'index.html'));

@@ -3,7 +3,7 @@ const searchThread = require('./crawl');
 const splitContents = require('./splitContents');
 
 
-const path = '/home/lighthouse/PaperCheck/uploads/182.150.122.5/文成江_3200607036_电信1班_AI在目标检测行业调查报告.doc';
+const path = '/home/lighthouse/PaperCheck/uploads/文成江_3200607036_电信1班_AI在目标检测行业调查报告(1).doc';
 
 // (async () => {
 // 	let start = Date.now();
@@ -33,9 +33,11 @@ async function checkFile(path){
 	return matchDegree;
 }
 
-// (async () => {
-// 	res = await checkFile(path);
-// 	console.log(res);
-// })()
+(async () => {
+	const fs = require('fs').promises;
+	res = await checkFile(path);
+	await fs.writeFlie('result.txt',`${path}:${res}\n`)
+	console.log(res);
+})()
 
 module.exports = checkFile;
