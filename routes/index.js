@@ -6,21 +6,21 @@ const checkFile = require('../utils/checkFile');
 
 const getDir = require('../utils/path');
 /* GET home page. */
-router.get('/*', function (req, res, next) {
+router.get('/*', async function (req, res, next) {
   const reqIp = req.ip.split(':').pop();
   if (req.query.name) {
     let fileName = req.query.name;
-    console.log(fileName);
 
     let targetFile = path.join(getDir('uploads'), `${reqIp}`, `${fileName}`);
-    console.log(targetFile);
 
+    setTimeout(() => {
+      res.json({
+        name: 'lili'
+      })
+    }, 60000);
   }
 
-  res.json({
-    name: 'lili'
-  })
-
+  // res.send(200)
   /* TODO */
 
 });

@@ -53,10 +53,13 @@ app.post('/upload', upload.array('file', 100), (req, res, next) => {
   // upFiles.push(req.files.values().next().value.originalname);
   let fileName = req.files.values().next().value.originalname;
   // console.log(upFiles);
-  res.send('dfa');
+  // res.send('dfa');
   // res.redirect('/index');
   // res.redirect(`/index?name=${fileName}`);
   // next();
+
+  res.status(200);
+  res.send('ok');
 
 
 })
