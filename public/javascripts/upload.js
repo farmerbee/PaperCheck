@@ -15,8 +15,6 @@
     }
 
     function handleUpload() {
-        // oLabel.className = 'input-label';
-        // oUploadInfo.className += ' active';
         activateUploading();
         const files = this.files,
             fileNum = files.length;
@@ -25,15 +23,16 @@
 
         const checkStatus = setInterval(() => {
             if (counter + errCounter == fileNum && errCounter != fileNum) {
-                // oLabel.className += ' active';
                 resumeUploading();
                 oLabel.innerHTML = `已上传${counter}个文档，正在处理中`;
-                // oUploadInfo.className = 'upload-info';
+                const xhr = new XMLHttpRequest();
+                xhr.open('post', '/process');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send(`number=${counter}`);
+                clearInterval(checkStatus);
             } else if (errCounter == fileNum) {
                 clearInterval(checkStatus);
                 alert('没有可以处理的word文档');
-                // oLabel.className += ' active';
-                // oUploadInfo.className = 'upload-info'
                 resumeUploading();
             }
         }, 1000);
@@ -58,8 +57,6 @@
             }
 
             xhr.onreadystatechange = function () {
-                // oTable.className += ' active';
-                // oLoading.className += ' active';
                 activateModal();
 
                 if (xhr.readyState == 4) {
@@ -76,7 +73,7 @@
 
                         xhr.send();
 
-                    }, 1000);
+                    }, 5000);
                 }
             }
 
@@ -87,10 +84,6 @@
             alert(`有${errCounter}个文件为非word文档，将不会处理`);
         }
 
-        if(counter){
-            // xhr = new XMLHttpRequest();
-            // xhr.open('/process')
-        }
 
     }
 

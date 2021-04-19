@@ -3,17 +3,26 @@ const router = express.Router();
 
 
 // 统计单个IP下接收到文件的数量
-let fileNum = {};
+// 共享给其它路由
+let fileInfo = {};
 
 router.post('/', (req, res, next) => {
     try {
-        let reqIp = req.ip.split(':').pop();
-        let num = fileNum[reqIp];
-        if (num) {
-            fileNum[reqIp] = num + 1;
+        let reqIp = req.ip.split(':').pop(),
+            fileName = req.files.values().next().value.originalname,
+            reqObj = fileInfo[reqIp];
+
+        if (reqObj) {
+            reqObj.number += 1;
+            reqObj.files.push(fileName);
         } else {
-            fileNum[reqIp] = 1;
+            reqObj = {
+                number: 1,
+                files: [fileName]
+            }
+            fileInfo[reqIp] = reqObj;
         }
+
 
         if (!req.files) {
             res.json({
@@ -32,4 +41,4 @@ router.post('/', (req, res, next) => {
 
 
 exports.router = router;
-exports.fileNum = fileNum;
+exports.fileInfo = fileInfo;

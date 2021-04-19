@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 const { ipList, router: homeRouter } = require('./routes/home');
 const fileHandleRouter = require('./routes/uphandle');
 const {router: uploadRouter} = require('./routes/upload');
+const {router: processRouter} = require('./routes/process');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -29,12 +30,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 
 app.get('/index*', indexRouter);
@@ -44,6 +45,7 @@ app.use('/upload', upload.array('file', 100), (req, res, next) => {
 })
 app.use('/upload',  uploadRouter);
 app.get('/uphandle', fileHandleRouter);
+app.use('/process', processRouter);
 
 app.use('/', homeRouter);
 

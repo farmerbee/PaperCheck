@@ -17,7 +17,7 @@ router.get('/*', async function (req, res, next) {
       res.json({
         name: 'lili'
       })
-    }, 60000);
+    }, 1000);
   }
 
   // res.send(200)
