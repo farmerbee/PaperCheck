@@ -5,7 +5,9 @@
 const splitContents = function(contents, delimiters=/[;|；|。.*?]/){
     const referList = ['参考', '参考：', '参考:',
         '参考文献', '参考文献:', '参考文献：', 'References（参考文献）', 'References (参考文献),'
-    ]
+    ],
+    referRegx = /参考文献$|参考文献：$|参考文献:$|参考$|参考:$|参考：$/;
+
     const fragments = [];
     // 通过换行符分割文本
     const paragraphs = contents.split('\n').filter(para => para),
@@ -13,6 +15,9 @@ const splitContents = function(contents, delimiters=/[;|；|。.*?]/){
 
     for (let i = 0; i < pLen; i++) {
         let p = paragraphs[i];
+        //检测到参考文献段落则终止遍历
+        if(referRegx.test(p))
+            break;
         let frags = p.split(delimiters),
             fLen = frags.length;
 
