@@ -106,6 +106,7 @@ async function clickSearch(keyword, browser) {
         //     flag: 'a'
         // });
         // console.log(keyword, result)
+        console.clear();
         console.log('*');
 
         await page.close();
