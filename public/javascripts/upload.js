@@ -15,17 +15,26 @@
     }
 
     function handleUpload() {
-        oLabel.className = 'input-label';
-        oUploadInfo.className += ' active';
+        // oLabel.className = 'input-label';
+        // oUploadInfo.className += ' active';
+        activateUploading();
         const files = this.files,
             fileNum = files.length;
-        let counter = 0;
+        let counter = 0,
+            errCounter = 0;
 
         const checkStatus = setInterval(() => {
-            if (counter == fileNum) {
+            if (counter + errCounter == fileNum && errCounter != fileNum) {
+                // oLabel.className += ' active';
+                resumeUploading();
+                oLabel.innerHTML = `已上传${counter}个文档，正在处理中`;
+                // oUploadInfo.className = 'upload-info';
+            } else if (errCounter == fileNum) {
                 clearInterval(checkStatus);
-                oLabel.className += ' active'
-                oUploadInfo.className = 'upload-info';
+                alert('没有可以处理的word文档');
+                // oLabel.className += ' active';
+                // oUploadInfo.className = 'upload-info'
+                resumeUploading();
             }
         }, 1000);
 
@@ -33,8 +42,7 @@
         Array.prototype.forEach.call(files, (file, index) => {
             const fileName = file.name;
             if (!fileName.endsWith('.doc') && !fileName.endsWith('.docx')) {
-                alert(`只支持doc,docx文件，${fileName}文件类型错误`)
-                counter++;
+                errCounter++;
                 return
             }
             const fd = new FormData(),
@@ -50,8 +58,9 @@
             }
 
             xhr.onreadystatechange = function () {
-                oTable.className += ' active';
-                oLoading.className += ' active';
+                // oTable.className += ' active';
+                // oLoading.className += ' active';
+                activateModal();
 
                 if (xhr.readyState == 4) {
                     let recurReq = setInterval(() => {
@@ -74,9 +83,31 @@
             xhr.send(fd);
         })
 
+        if (errCounter) {
+            alert(`有${errCounter}个文件为非word文档，将不会处理`);
+        }
+
+        if(counter){
+            // xhr = new XMLHttpRequest();
+            // xhr.open('/process')
+        }
+
     }
 
+    function activateModal(){
+        oTable.className += ' active';
+                oLoading.className += ' active';
+    }
 
+    function activateUploading(){
+        oLabel.className = 'input-label';
+        oUploadInfo.className += ' active';
+    }
+
+    function resumeUploading(){
+        oLabel.className += ' active';
+        oUploadInfo.className = 'upload-info';
+    }
 
     window.onload = function () {
         init();
