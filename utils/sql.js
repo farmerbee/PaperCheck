@@ -1,8 +1,5 @@
 const mysql = require('mysql2/promise');
-// const { promisify } = require('util');
 
-// const connection = mysql.createConnection({
-// });
 const sqlOptions = {
     host: 'localhost',
     user: 'ai',
@@ -24,10 +21,10 @@ async function checkUsability() {
 
 
 // 设置进程占用状态
-async function setUsing() {
+async function setUsing(usable) {
     const connection = await mysql.createConnection(sqlOptions);
     await connection.connect();
-    let qString = 'update status set checking=1';
+    let qString = `update status set checking=${usable}`;
     await connection.query(qString);
     await connection.end();
 
@@ -48,7 +45,7 @@ async function insert(info) {
     await connection.end();
 }
 
-
+// 插入重复率信息
 async function insertMatchInfo(opt) {
     const connection = await mysql.createConnection(sqlOptions);
     await connection.connect();
@@ -91,6 +88,8 @@ async function fileExist(fileName, ip) {
     return exist;
 }
 
+
+// 检查相关文件是否已被处理
 async function fileChecked(fileName, ip) {
     const connection = await mysql.createConnection(sqlOptions);
     await connection.connect();
@@ -101,22 +100,36 @@ async function fileChecked(fileName, ip) {
 }
 
 
+// 检索相关文件的重复率
+async function getRatio(fileName, ip) {
+    const connection = await mysql.createConnection(sqlOptions);
+    await connection.connect();
+    let qString = `select ratio from documents where title="${fileName}" and ip="${ip}"`;
+    let [res, _] = await connection.query(qString);
+    await connection.end();
+    return res[0].ratio;
+}
 
-(async () => {
-    await insertMatchInfo({
-        fileName: 'fddffff',
-        ratio: 22.22,
-        ip: '12.12.12.12'
-    })
-    // console.log(await fileChecked('fddffff', '12.12.12.12'))
+
+
+// (async () => {
+    // console.log(await getRatio('fddffff', '12.12.12.12'))
+    // await insertMatchInfo({
+    //     fileName: 'fddffff',
+    //     ratio: 22.22,
+    //     ip: '12.12.12.12'
+    // })
+    // console.log(await fileChecked('沈琪瀚_3200607038_电子信息1班_AI在语音识别行业调查报告(1).docx', '222.18.127.107'))
     // console.log(await checkUsability())
-    // console.log(await setUsing());
+    // console.log(await setUsing(0));
     // await insertFile('fdff', '11.11.11.11');
-    // console.log(await checkIp(null))
-    // console.log(await checkIp('11.11.11.11'))
+    // console.log(await checkIp('222.18.127.107'))
+    // console.log(await insert({
+    // ip: '13.13.13.13'
+    // }))
     // console.log(await checkFile('fdff', '11.11.11.11'))
     // await insert({ ip: '12.12.12.12', fileName: 'fddffff' });
-})()
+// })()
 
 exports.setUsing = setUsing;
 exports.fileExist = fileExist;
@@ -125,3 +138,4 @@ exports.checkUsability = checkUsability;
 exports.insert = insert;
 exports.fileChecked = fileChecked;
 exports.insertMatchInfo = insertMatchInfo;
+exports.getRatio = getRatio;

@@ -15,8 +15,9 @@
 <body>
     <div class="container">
         <div class="form-wrap">
+            <div class="download-xls">点击下载结果</div>
             <p class="upload-info "><span class="upload-counter">正在上传</span></p>
-            <label class="input-label active" for="files">请选择需要查重的文件</label><br>
+            <label class="input-label active" for="files">请选择要上传的文件夹</label><br>
             <input type="file" name="files" id="files" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"  webkitdirectory #multiple></input>
         </div>
         <hr>
@@ -25,10 +26,12 @@
                 <caption top>查重结果</caption>
                 <thead>
                     <tr>
+                        <th>序号</th>
                         <th >论文名称</th>
                         <th >重复率</th>
                     </tr>
                 </thead>
+                
             </table>
         </div>
         <div class="loading-mod ">

@@ -4,13 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const multer = require('multer');
-const fs = require('fs');
+// const fs = require('fs');
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-const { ipList, router: homeRouter } = require('./routes/home');
-const fileHandleRouter = require('./routes/uphandle');
+// var usersRouter = require('./routes/users');
+const { router: homeRouter } = require('./routes/home');
+// const fileHandleRouter = require('./routes/uphandle');
 const {router: uploadRouter} = require('./routes/upload');
 const {router: processRouter} = require('./routes/process');
 
@@ -39,12 +39,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/index*', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 app.use('/upload', upload.array('file', 100), (req, res, next) => {
+  // res.status(200).send('ok');
   next();
 })
 app.use('/upload',  uploadRouter);
-app.get('/uphandle', fileHandleRouter);
+// app.get('/uphandle', fileHandleRouter);
 app.use('/process', processRouter);
 
 app.use('/', homeRouter);
@@ -67,4 +68,3 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
-// exports.upFiles = upFiles;

@@ -151,7 +151,7 @@ async function searchThread(keyList, concurrency) {
     // const browser = await puppeteer.launch();
     let res = await concurrentRun(clickSearch, concurrency, keyList, browser);
     await browser.close();
-    return  sentenceMath(parseFloat(res));
+    return  parseFloat(sentenceMath(res));
 }
 
 
