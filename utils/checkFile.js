@@ -10,7 +10,7 @@ async function checkFile(path){
 	let frags = splitContents(contents);
 	let matchDegree = await searchThread(frags);
 
-	return matchDegree;
+	return [path, matchDegree];
 }
 
 // (async () => {

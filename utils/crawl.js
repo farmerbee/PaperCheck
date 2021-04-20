@@ -4,7 +4,10 @@ const puppeteer = require('puppeteer');
 const fs = require('fs').promises;
 
 // 检索关键字，返回包含原始长度和最大匹配长度的数组
-async function clickSearch(keyword, browser) {
+async function clickSearch(keyword, browser, times = 0) {
+    if (times > 1) {
+        return;
+    }
     // browser = await puppeteer.launch();
     const page = await browser.newPage();
     page.setDefaultTimeout(0);
@@ -115,7 +118,11 @@ async function clickSearch(keyword, browser) {
         // console.log(error);
     }
 
+    if (result.length == 0 && times == 0) {
+        return await clickSearch(keyword, browser, times + 1);
+    }
     console.log(result);
+
 
     let matchCount = wordsMath(keyword, result);
 
@@ -127,23 +134,24 @@ async function clickSearch(keyword, browser) {
 //对关键字序列进行检索，返回重复度number值，精确到小数点后两位
 async function searchThread(keyList, concurrency) {
     console.log(keyList.length);
-//    const proxy = await get_proxy('http://localhost:5555/random');
-//   let browser = null;
-//
-//    if (proxy) {
-//        browser = await puppeteer.launch({
-//            args: [
-//                `--proxy-server=${proxy}`
-//            ]
-//        });
-  //  }else{
- //       browser = await puppeteer.launch();
-//    }
+    const proxy = await get_proxy('http://localhost:5555/random');
+	console.log(proxy);
+    let browser = null;
 
-     const browser = await puppeteer.launch();
+    if (proxy) {
+        browser = await puppeteer.launch({
+            args: [
+                `--proxy-server=${proxy}`
+            ]
+        });
+    } else {
+        browser = await puppeteer.launch();
+    }
+
+    // const browser = await puppeteer.launch();
     let res = await concurrentRun(clickSearch, concurrency, keyList, browser);
     await browser.close();
-    return sentenceMath(res);
+    return  sentenceMath(parseFloat(res));
 }
 
 
@@ -168,7 +176,8 @@ async function get_proxy(proxy_server) {
                     proxy: {
                         host: host,
                         port: port
-                    }
+                    },
+                    timeout: 5000
                 })
 
                 if (res2.status == 200) {

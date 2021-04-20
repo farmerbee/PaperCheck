@@ -1,5 +1,5 @@
 // 流水线并行执行异步任务
-async function concurrentRun(fn, max=5,interableArg, ...args) {
+async function concurrentRun(fn, max=15,interableArg, ...args) {
     if (!interableArg.length) return;
 
     const replyList = []; 
