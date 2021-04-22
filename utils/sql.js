@@ -39,7 +39,7 @@ async function insert(info) {
     if (info.fileName && info.ip) {
         qString = `insert into documents values ("${info.fileName}",0,0,"${info.ip}" )`;
     } else if (!info.fileName && info.ip) {
-        qString = `insert into ips values ("${info.ip}")`;
+        qString = `insert into  ips (ip) values ("${info.ip}")`;
     }
     let status = await connection.query(qString);
     await connection.end();
@@ -57,19 +57,19 @@ async function insertMatchInfo(opt) {
 }
 
 
-// 检查IP是否已经存在
-async function checkIp(ip) {
+// 获取IP信息：ip,checking(是否已经处理),返回对象
+async function getIpInfo(ip) {
     const connection = await mysql.createConnection(sqlOptions);
     let exist = false;
     await connection.connect();
-    const qString = `select ip from ips`;
+    const qString = `select ip,checking from ips where ip="${ip}"`;
     let [ips, _] = await connection.query(qString);
-    ips.forEach(p => {
-        if (ip == p.ip)
-            exist = true;
-    })
+    // ips.forEach(p => {
+    //     if (ip == p.ip)
+    //         exist = true;
+    // })
     await connection.end();
-    return exist;
+    return ips[0];
 }
 
 
@@ -110,30 +110,71 @@ async function getRatio(fileName, ip) {
     return res[0].ratio;
 }
 
+// 获取指定IP下所有文件的所有信息数组,
+async function getFiles(ip) {
+    const connection = await mysql.createConnection(sqlOptions);
+    await connection.connect();
+    let qString = `select title, ratio, checked from documents where ip="${ip}"`;
+    const [res, _] = await connection.query(qString);
+    await connection.end();
+    return res;
+
+}
+
+
+async function lockIp(ip, lock=1) {
+    const connection = await mysql.createConnection(sqlOptions);
+    await connection.connect();
+    let qString = `update ips set checking=${lock} where ip="${ip}"`;
+    await connection.query(qString);
+    await connection.end();
+
+
+}
+
 
 
 // (async () => {
-    // console.log(await getRatio('fddffff', '12.12.12.12'))
-    // await insertMatchInfo({
-    //     fileName: 'fddffff',
-    //     ratio: 22.22,
-    //     ip: '12.12.12.12'
-    // })
-    // console.log(await fileChecked('沈琪瀚_3200607038_电子信息1班_AI在语音识别行业调查报告(1).docx', '222.18.127.107'))
-    // console.log(await checkUsability())
-    // console.log(await setUsing(0));
-    // await insertFile('fdff', '11.11.11.11');
-    // console.log(await checkIp('222.18.127.107'))
-    // console.log(await insert({
-    // ip: '13.13.13.13'
-    // }))
-    // console.log(await checkFile('fdff', '11.11.11.11'))
-    // await insert({ ip: '12.12.12.12', fileName: 'fddffff' });
+//     let reqIp = '182.150.122.5'
+//     await lockIp(reqIp,0)
+//     // if (await getIpInfo(reqIp) && await getFiles(reqIp)[0] && 1) {
+//     //     // console.log(await getFiles(reqIp)[0])
+//     //     console.log(reqIp, ' checked')
+//     // }else{
+//     //     // res = await getFiles(reqIp);
+//     //     // console.log(res[0])
+//     //     // for(prop in res){
+//     //         // console.log(res[prop]);
+//     //     // }
+//     //     // console.log(await getIpInfo(reqIp));
+//     //     getFiles[0] = 3;
+//     //     console.log( await getFiles(reqIp)[0]);
+//     //     // console.log(Array.prototype.length(await getFiles(reqIp)))
+//     // }
+//     // console.log(await getFiles('1.11.11.11'))
+//     // console.log(await getRatio('fddffff', '12.12.12.12'))
+//     // await insertMatchInfo({
+//     //     fileName: 'fddffff',
+//     //     ratio: 22.22,
+//     //     ip: '12.12.12.12'
+//     // })
+//     // console.log(await fileChecked('沈琪瀚_3200607038_电子信息1班_AI在语音识别行业调查报告(1).docx', '222.18.127.107'))
+//     // console.log(await checkUsability())
+//     // console.log(await setUsing(0));
+//     // await insertFile('fdff', '11.11.11.11');
+//     // console.log(await checkIpInfo('12.12.12.12'))
+//     // // console.log(await insert({
+//     // // ip: '13.13.13.13'
+//     // // }))
+//     // // console.log(await checkFile('fdff', '11.11.11.11'))
+//     // // await insert({ ip: '12.12.12.12' });
 // })()
 
+exports.lockIp = lockIp;
+exports.getFiles = getFiles;
 exports.setUsing = setUsing;
 exports.fileExist = fileExist;
-exports.checkIp = checkIp;
+exports.getIpInfo = getIpInfo;
 exports.checkUsability = checkUsability;
 exports.insert = insert;
 exports.fileChecked = fileChecked;

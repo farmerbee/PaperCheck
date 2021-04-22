@@ -10,7 +10,7 @@ async function clickSearch(keyword, browser, times = 0) {
     }
     // browser = await puppeteer.launch();
     const page = await browser.newPage();
-    page.setDefaultTimeout(0);
+    page.setDefaultTimeout(50000);
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36 Edg/89.0.774.57');
     //屏蔽css,js,png文件的请求
     await page.setRequestInterception(true);
@@ -40,18 +40,7 @@ async function clickSearch(keyword, browser, times = 0) {
                 delay: 100
             })
         ])
-        // await page.waitForTimeout(Math.random() * 100);
-        // await Promise.all([page.goto(HOME + '/s?wd=' + keyword),
-        // page.waitForNavigation()]);
-
-        // await page.screenshot({
-        //     path: `${Math.random()}.png`
-        // })
-
-        // console.clear();
-        // Symbol = Math.random() > 0.5 ? '*.*' : '-.-';
-        // console.log(Symbol);
-        // 解析返回的网页
+        
         result = await page.$eval('body', function (document) {
             // 百度检索无结果，则返回为空数组
             const noContent = document.querySelector('.content_none');

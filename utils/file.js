@@ -85,7 +85,7 @@ async function readFile(pathName){
 // exports.fileType = fileType;
 // exports.readDoc = readDoc;
 // exports.readDocx = readDocx;
-// exports.readDir = readDir;
+exports.readDir = readDir;
 exports.readFile = readFile;
 
 

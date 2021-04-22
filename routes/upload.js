@@ -7,6 +7,7 @@ const router = express.Router();
 let fileInfo = {};
 
 router.post('/', (req, res, next) => {
+    // console.log('enter upload2');
     try {
         let reqIp = req.ip.split(':').pop(),
             fileName = req.files.values().next().value.originalname,
@@ -37,6 +38,8 @@ router.post('/', (req, res, next) => {
     } catch (err) {
         console.log(err);
     }
+
+    // console.log(fileInfo);
 })
 
 

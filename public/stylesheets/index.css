@@ -15,13 +15,12 @@ a {
 .container {
     margin: 4rem auto;
     width: 800px;
-    height: 600px;
-    /* border: 1px solid #000; */
+    height: 100%;
     border-radius: 7px;
     background-color: rgb(250, 250, 250);
     box-shadow: 0 0 5px 5px rgba(150, 150, 150, .5);
-    /* overflow: hidden; */
-    overflow: auto;
+    overflow: hidden;
+    /* overflow: auto; */
 }
 
 .form-wrap{
@@ -100,7 +99,7 @@ table td:nth-child(2){
 
 .result-tb.active{
     display: table;
-    margin: 0 auto;
+    margin: 0 auto 5em;
     border-collapse: collapse;
     border: 1mm ridge rgba(170, 220, 220, .6);
 }
