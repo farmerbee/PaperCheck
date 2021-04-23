@@ -6,12 +6,12 @@ const fs = require('fs').promises;
 // 检索关键字，返回包含原始长度和最大匹配长度的数组
 async function clickSearch(keyword, browser, times = 0) {
     if (times > 1) {
-        return;
+        return [0, 0];
     }
-    // browser = await puppeteer.launch();
     const page = await browser.newPage();
-    page.setDefaultTimeout(50000);
-    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36 Edg/89.0.774.57');
+    page.setDefaultTimeout(60000);
+    // page.setDefaultTimeout(0);
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36 Edg/90.0.818.42');
     //屏蔽css,js,png文件的请求
     await page.setRequestInterception(true);
     page.on('request', req => {
@@ -31,16 +31,14 @@ async function clickSearch(keyword, browser, times = 0) {
         await page.type('#kw', keyword, {
             delay: 100
         });
-        // await page.waitForTimeout(100);
         await Promise.all([
             page.waitForNavigation(),
-            //待定
-            // page.waitForSelector('#container'),
             page.click('#su', {
-                delay: 100
+                delay: 300
             })
         ])
-        
+
+
         result = await page.$eval('body', function (document) {
             // 百度检索无结果，则返回为空数组
             const noContent = document.querySelector('.content_none');
@@ -94,19 +92,18 @@ async function clickSearch(keyword, browser, times = 0) {
         });
 
 
-        // await fs.writeFile('result.txt', 'key:'+keyword+'\tvalues:'+result+'\n\n', {
-        //     flag: 'a'
-        // });
-        // console.log(keyword, result)
         console.clear();
         console.log('*');
 
         await page.close();
 
     } catch (error) {
-        // console.log(error);
+        try {
+            await page.close();
+        } catch (err) { }
     }
 
+    // 若上次返回为空，则再请求一次
     if (result.length == 0 && times == 0) {
         return await clickSearch(keyword, browser, times + 1);
     }
@@ -121,64 +118,93 @@ async function clickSearch(keyword, browser, times = 0) {
 
 
 //对关键字序列进行检索，返回重复度number值，精确到小数点后两位
-async function searchThread(keyList, concurrency) {
+async function searchThread(keyList, concurrency, local = false) {
     console.log(keyList.length);
-    const proxy = await get_proxy('http://localhost:5555/random');
-	console.log(proxy);
+     //const proxy = await get_proxy('http://42.192.17.154:5555/random');
+    const proxy = await getProxy('http://42.192.17.154:5555/random', 15);
+    // proxy = null;
+    console.log(proxy);
     let browser = null;
 
-    if (proxy) {
+    //请求到可用IP，则使用代理，没有则用本地IP
+    if (proxy && !local) {
         browser = await puppeteer.launch({
+            executablePath: '/snap/bin/chromium',
             args: [
-                `--proxy-server=${proxy}`
+                `--proxy-server=${proxy}`,
+                '--no-sandbox',
+                "--disabled-setupid-sandbox"
+            ],
+            ignoreDefaultArgs: [
+                '--disable-extensions'
             ]
         });
     } else {
-        browser = await puppeteer.launch();
+        browser = await puppeteer.launch({
+            executablePath: '/snap/bin/chromium',
+            args: [
+                '--no-sandbox',
+                "--disabled-setupid-sandbox"
+            ],
+            ignoreDefaultArgs: [
+                '--disable-extensions'
+            ]
+        });
     }
 
-    // const browser = await puppeteer.launch();
     let res = await concurrentRun(clickSearch, concurrency, keyList, browser);
     await browser.close();
-    return  parseFloat(sentenceMath(res));
+    return parseFloat(sentenceMath(res));
 }
 
 
-//获取代理IP
+//获取代理IP,并验证可用性
+//检测10个，都可用则用本地Ip
 const axios = require('axios');
-// async function get_proxy(proxy_server) {
-
-//     res = await axios.get(proxy_server);
-
-//     return res.data;
-// }
+const needle = require('needle');
 
 async function get_proxy(proxy_server) {
-    let ctn = 3;
+    let ctn = 10;
     let res = null;
     while (ctn > 0) {
         try {
             res = await axios.get(proxy_server);
             let [host, port] = res.data.split(':');
+            console.log(host, port)
             try {
-                let res2 = await axios.get('https://www.baidu.com', {
-                    proxy: {
-                        host: host,
-                        port: port
-                    },
-                    timeout: 5000
-                })
+                let res2 = await needle('get', 'https://www.baidu.com', {
+                    proxy: res.data,
+                    //设置5秒超时
+                    response_timeout: 5000,
+                    read_timeout: 5000,
+                    headers: {
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36 Edg/90.0.818.42'
+                    }
+                }),
+                    res3 = await needle('get', 'https://www.baidu.com/s?wd=nodejs', {
+                        proxy: res.data,
+                        //设置5秒超时
+                        response_timeout: 8000,
+                        read_timeout: 8000,
+                        headers: {
+                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36 Edg/90.0.818.42'
+                        }
+                    })
 
-                if (res2.status == 200) {
+                if (res2.statusCode == 200 && res3.statusCode == 200) {
+                    console.log('ok')
                     break;
                 }
             } catch (e) {
+                console.log('res2', e);
 
+                res = null;
             }
 
         }
-        catch {
-
+        catch (err) {
+            console.log('res', err)
+            res = null;
         }
         ctn--;
     }
@@ -188,9 +214,59 @@ async function get_proxy(proxy_server) {
         return res;
 }
 
+
+async function getProxy(proxyServer, num = 10) {
+    const proxies = [];
+    for (let i = 0; i < num; i++) {
+        let res = await axios.get(proxyServer);
+        if (res.data) {
+            proxies.push(res.data);
+        }
+    }
+
+    const tasks = [];
+
+    for (p of proxies) {
+        const options = {
+            proxy: p,
+            //设置5秒超时
+            response_timeout: 10000,
+            read_timeout: 10000,
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36 Edg/90.0.818.42'
+            }
+        }
+        tasks.push(new Promise((resolve, reject) => {
+            needle.get('https://www.baidu.com', options, (err, res) => {
+                if (err || res.statusCode != 200) {
+                    reject(null);
+                }
+
+                needle.get('https://www.baidu.com/s?wd=nodejs', options, (err, res) => {
+                    if (err || res.statusCode != 200) {
+                        reject(null);
+                    }
+
+                    resolve(p);
+                })
+            })
+        }));
+    }
+
+    try {
+        let result = await Promise.any(tasks);
+        return result;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+}
+
+
+
 // (async () => {
 
-//     console.log(await get_proxy('http://localhost:5555/random'));
+//     console.log(await getProxy('http://42.192.17.154:5555/random'));
 // })()
 
 module.exports = searchThread;

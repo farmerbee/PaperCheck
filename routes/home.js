@@ -14,9 +14,9 @@ router.get('/', async (req, res, next) => {
         fileStatus = await getFiles(reqIp);
     if (ipStatus && fileStatus[0]) {
         // IP下文件正在在处理
-        if (ipStatus.checking == 1) {
+        if (ipStatus.checking == 1 || fileStatus[0].checked == 1) {
             res.sendFile(path.join(__dirname, '..', 'views' , 'user.html'));
-        } 
+        }
         // 该IP上传处理过文件，但现在并没有检索该IP
         else {
             res.sendFile(path.join(__dirname, '..', 'views', 'ai.html'));

@@ -16,7 +16,7 @@ a {
     margin: 4rem auto;
     width: 800px;
     height: 100%;
-    border-radius: 7px;
+    border-radius: 15px;
     background-color: rgb(250, 250, 250);
     box-shadow: 0 0 5px 5px rgba(150, 150, 150, .5);
     overflow: hidden;

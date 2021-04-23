@@ -19,7 +19,9 @@ router.get('/', async (req, res, next) => {
             results.push([`${i + 1}`, data.title, data.ratio]);
         }
 
-        const buffer = xlsx.build([{ name: '查重结果', data: results }])
+        const options = { '!cols': [{ wch: 6 }, { wch: 80 }, {wch: 10}] };
+
+        const buffer = xlsx.build([{ name: '查重结果', data: results }], options)
         // buffer = Buffer.from(results.toString()); 
         // res.setHeader('Content-Language', 'zh-CN');
         fs.writeFile('result.xlsx', buffer, (err) => {
