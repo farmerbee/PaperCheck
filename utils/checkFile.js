@@ -4,36 +4,40 @@ const splitContents = require('./splitContents');
 
 
 // 根据文件路径爬取，并将对比结果返回
-// 复检不超过两次 
-async function checkFile(path, times = 0, local = false, pre=0) {
-	// if (times = 2)
-	// return checkFile(path, times+1, true, pre);
-	// else if(times > 2)
-	// return pre;
+async function checkFile(path, times = 0, local = false, pre = 0) {
 	let contents = await readFile(path);
 	let frags = splitContents(contents);
-	let matchDegree = await searchThread(frags, 10, local);
+
+	/****** */
+	let matchDegree = 0;
+	try {
+		matchDegree = await searchThread(frags, 10, local);
+	} catch {
+	}
+
+	/****** */
+	// let matchDegree = await searchThread(frags, 10, local);
 	console.log('match:  ', matchDegree)
-	// 返回为0时，复检
-	// if (parseInt(matchDegree) == 0) {
-	if (parseInt(matchDegree) < 15) {
-		//第二次复检时用本地IP
-		if(times > 2)
-			return pre;
-		if (times == 2)
+	//重复率等于0时不记次数复检
+	if (parseInt(matchDegree) == 0) {
+		matchDegree = await checkFile(path, times, local, matchDegree);
+	}
+	// 重复率小于15%时复检
+	else if (parseInt(matchDegree) < 15) {
+		//三次都小于15时，使用最后两次的最大值
+		if (times > 1)
+			return pre > matchDegree ? pre : matchDegree;
+		//第三次复检时用本地IP
+		if (times == 1)
 			local = true
 		matchDegree = await checkFile(path, times + 1, local, matchDegree);
 	}
-	// 重复率小于15%时复检
-	// if (parseInt(matchDegree) < 15)
-	// matchDegree = await searchThread(frags, 10, local);
-	// matchDegree = await checkFile(path, times + 1, local)
 	return matchDegree;
 }
 
 // (async function () {
 // 	start = Date.now();
-// 	console.log(await checkFile('uploads/182.150.122.5/王奇_3200607051_2020级一班_人工智能在自动驾驶行业中的应用.doc'));
+// 	console.log(await checkFile('/root/PaperCheck/uploads/222.18.126.67/何宇辰_3200604002_工学1班_AI在智慧医疗行业调查报告 - Copy - Copy (36) - Copy.docx'));
 // 	console.log(`\ntime used ${(Date.now() - start) / 1000} seconds`)
 // })()
 

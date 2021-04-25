@@ -9,8 +9,8 @@ async function clickSearch(keyword, browser, times = 0) {
         return [0, 0];
     }
     const page = await browser.newPage();
-    page.setDefaultTimeout(60000);
-    // page.setDefaultTimeout(0);
+    page.setDefaultTimeout(50000);
+    //page.setDefaultTimeout(0);
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36 Edg/90.0.818.42');
     //屏蔽css,js,png文件的请求
     await page.setRequestInterception(true);
@@ -34,7 +34,7 @@ async function clickSearch(keyword, browser, times = 0) {
         await Promise.all([
             page.waitForNavigation(),
             page.click('#su', {
-                delay: 300
+                delay: 100
             })
         ])
 
@@ -92,8 +92,6 @@ async function clickSearch(keyword, browser, times = 0) {
         });
 
 
-        console.clear();
-        console.log('*');
 
         await page.close();
 
@@ -107,7 +105,7 @@ async function clickSearch(keyword, browser, times = 0) {
     if (result.length == 0 && times == 0) {
         return await clickSearch(keyword, browser, times + 1);
     }
-    console.log(result);
+    //console.log(result);
 
 
     let matchCount = wordsMath(keyword, result);
@@ -120,14 +118,20 @@ async function clickSearch(keyword, browser, times = 0) {
 //对关键字序列进行检索，返回重复度number值，精确到小数点后两位
 async function searchThread(keyList, concurrency, local = false) {
     console.log(keyList.length);
-     //const proxy = await get_proxy('http://42.192.17.154:5555/random');
-    const proxy = await getProxy('http://42.192.17.154:5555/random', 15);
-    // proxy = null;
-    console.log(proxy);
-    let browser = null;
+    //const proxy = await get_proxy('http://42.192.17.154:5555/random');
+    let browser = null,
+        proxy = null;
+    if (!local) {
+        proxy = await getProxy('http://42.192.17.154:5555/random', 15);
+        // 第一次获取代理失败，则再尝试第二次
+        if (!proxy) {
+            proxy = await getProxy('http://42.192.17.154:5555/random', 15);
+        }
+    }
 
+    console.log(proxy);
     //请求到可用IP，则使用代理，没有则用本地IP
-    if (proxy && !local) {
+    if (proxy) {
         browser = await puppeteer.launch({
             executablePath: '/snap/bin/chromium',
             args: [
@@ -159,7 +163,6 @@ async function searchThread(keyList, concurrency, local = false) {
 
 
 //获取代理IP,并验证可用性
-//检测10个，都可用则用本地Ip
 const axios = require('axios');
 const needle = require('needle');
 
@@ -170,7 +173,7 @@ async function get_proxy(proxy_server) {
         try {
             res = await axios.get(proxy_server);
             let [host, port] = res.data.split(':');
-            console.log(host, port)
+            // console.log(host, port)
             try {
                 let res2 = await needle('get', 'https://www.baidu.com', {
                     proxy: res.data,
@@ -196,14 +199,14 @@ async function get_proxy(proxy_server) {
                     break;
                 }
             } catch (e) {
-                console.log('res2', e);
+                // console.log('res2', e);
 
                 res = null;
             }
 
         }
         catch (err) {
-            console.log('res', err)
+            // console.log('res', err)
             res = null;
         }
         ctn--;
@@ -230,20 +233,22 @@ async function getProxy(proxyServer, num = 10) {
         const options = {
             proxy: p,
             //设置5秒超时
-            response_timeout: 10000,
-            read_timeout: 10000,
+            response_timeout: 5000,
+            read_timeout: 5000,
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36 Edg/90.0.818.42'
             }
         }
         tasks.push(new Promise((resolve, reject) => {
             needle.get('https://www.baidu.com', options, (err, res) => {
-                if (err || res.statusCode != 200) {
+                // if (err || res.statusCode != 200) {
+                if (err || res.statusCode >= 400) {
                     reject(null);
                 }
 
                 needle.get('https://www.baidu.com/s?wd=nodejs', options, (err, res) => {
-                    if (err || res.statusCode != 200) {
+                    // if (err || res.statusCode != 200) {
+                    if (err || res.statusCode >= 400) {
                         reject(null);
                     }
 
@@ -257,7 +262,7 @@ async function getProxy(proxyServer, num = 10) {
         let result = await Promise.any(tasks);
         return result;
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         return null;
     }
 }
@@ -265,8 +270,10 @@ async function getProxy(proxyServer, num = 10) {
 
 
 // (async () => {
-
-//     console.log(await getProxy('http://42.192.17.154:5555/random'));
+//     for (let i = 0; i < 20; i++) {
+//         console.log(await getProxy('http://42.192.17.154:5555/random', 15));
+//         // console.log(await get_proxy('http://42.192.17.154:5555/random'));
+//     }
 // })()
 
 module.exports = searchThread;

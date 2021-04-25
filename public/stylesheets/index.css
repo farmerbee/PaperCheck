@@ -105,7 +105,13 @@ table td:nth-child(2){
 }
 
 .result-tb {
+    position: relative;
     display: none;
+}
+
+.result-tb th{
+    position: -webkit-sticky ;
+    position: sticky ;
 }
 
 .loading-mod.active{

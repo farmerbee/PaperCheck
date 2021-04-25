@@ -7,35 +7,30 @@ const getDir = require('../utils/path');
 const checkFile = require('../utils/checkFile');
 const { fileExist, lockIp, checkUsability, setUsing, insert, fileChecked, insertMatchInfo } = require('../utils/sql');
 const concurrentRun = require('../utils/concurrent');
-const {readDir} = require('../utils/file')
+const { readDir } = require('../utils/file')
 
 const { fileInfo } = require('./upload');
 
 
 // 爬取相关文件，并将返回对比结果存入数据库
 router.post('/', async (req, res, next) => {
-    // console.log(req.body);
 
-    // res.status(200).send('done');
     const usable = await checkUsability();
     if (usable) {
         await setUsing(1);
-        // const number = req.body.number,
         const reqIp = req.ip.split(':').pop(),
-            fileNum = fileInfo[reqIp].number,
-            targetDir = path.join(__dirname,'..', 'uploads', `${reqIp}`);
+            targetDir = path.join(__dirname, '..', 'uploads', `${reqIp}`);
         // files = fileInfo[reqIp].files;
 
         let files = await readDir(targetDir);
         files = files.map(filePath => {
             return filePath.split('/').pop();
-        }) 
-        /* TODO:query the database */
+        })
         const start = Date.now();
         /***** */
         await updateFileStatus(files);
         await lockIp(reqIp, 1);
-        await concurrentRun(checkInsert, 3, files, reqIp);
+        await concurrentRun(checkInsert, 6, files, reqIp);
 
         /******* */
 
@@ -79,8 +74,11 @@ router.post('/', async (req, res, next) => {
 })
 
 
+
+const { setTimeout } = require('timers/promises');
 // 处理文件并将结果插入到数据库中
 async function checkInsert(fileName, ip) {
+    await setTimeout((Math.random() + Math.random() + Math.random() - Math.random() - Math.random() + Math.random() - Math.random()) * 15000, null);
     let filePath = `${getDir('uploads')}/${ip}/${fileName}`;
     let result = await checkFile(filePath);
     await insertMatchInfo({

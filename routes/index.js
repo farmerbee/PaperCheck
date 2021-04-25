@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const path = require('path');
-const checkFile = require('../utils/checkFile');
+// const checkFile = require('../utils/checkFile');
 const { getRatio, fileExist, fileChecked } = require('../utils/sql');
 
 
-const getDir = require('../utils/path');
+// const getDir = require('../utils/path');
 const { getFiles } = require('../utils/sql');
 const { readDir } = require('../utils/file');
 
@@ -35,8 +35,6 @@ router.get('/*', async function (req, res, next) {
         fileNum = docs.length;
       try {
         const resJson = {
-          // 'date':Date.now(),
-          // 'finished': false,
           'number': fileNum,
           'files': []
         }
@@ -54,7 +52,6 @@ router.get('/*', async function (req, res, next) {
     console.log(err);
   }
 
-  /* TODO */
 
 });
 

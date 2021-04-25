@@ -68,13 +68,17 @@ const readDocx = async function (pathName) {
 
 
 // 根据文件类型读取文档内容，返回字符串
-async function readFile(pathName){
+async function readFile(pathName) {
     let fileType = await getFileType(pathName);
     let contents = '';
-    if(fileType == 'docx'){
-        contents = await readDocx(pathName);
-    }else if(fileType == 'doc'){
-        contents = await readDoc(pathName);
+    try {
+        if (fileType == 'docx') {
+            contents = await readDocx(pathName);
+        } else if (fileType == 'doc') {
+            contents = await readDoc(pathName);
+        }
+    }catch{
+        
     }
 
     return contents;

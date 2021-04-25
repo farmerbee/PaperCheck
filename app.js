@@ -4,13 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const multer = require('multer');
-// const fs = require('fs');
 
 
 var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
 const { router: homeRouter } = require('./routes/home');
-// const fileHandleRouter = require('./routes/uphandle');
 const { router: uploadRouter } = require('./routes/upload');
 const { router: processRouter } = require('./routes/process');
 const downloadRouter = require('./routes/download');
@@ -39,20 +36,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.all("*", function (req, res, next) {
-  // res.setHeader('Content-Type', 'text/html;charset=utf-8');
-  // res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
-  // res.hasHeader('Access-Control-Allow-Origin', '*');
   next();
 });
 app.get('/index*', indexRouter);
-// app.use('/users', usersRouter);
 app.use('/upload', upload.array('file', 100), (req, res, next) => {
-  // res.status(200).send('ok');
   next();
 })
 app.use('/upload', uploadRouter);
-// app.get('/uphandle', fileHandleRouter);
 app.use('/process', processRouter);
 app.use('/download', downloadRouter);
 

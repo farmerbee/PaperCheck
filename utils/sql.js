@@ -134,41 +134,6 @@ async function lockIp(ip, lock=1) {
 
 
 
-// (async () => {
-//     let reqIp = '182.150.122.5'
-//     await lockIp(reqIp,0)
-//     // if (await getIpInfo(reqIp) && await getFiles(reqIp)[0] && 1) {
-//     //     // console.log(await getFiles(reqIp)[0])
-//     //     console.log(reqIp, ' checked')
-//     // }else{
-//     //     // res = await getFiles(reqIp);
-//     //     // console.log(res[0])
-//     //     // for(prop in res){
-//     //         // console.log(res[prop]);
-//     //     // }
-//     //     // console.log(await getIpInfo(reqIp));
-//     //     getFiles[0] = 3;
-//     //     console.log( await getFiles(reqIp)[0]);
-//     //     // console.log(Array.prototype.length(await getFiles(reqIp)))
-//     // }
-//     // console.log(await getFiles('1.11.11.11'))
-//     // console.log(await getRatio('fddffff', '12.12.12.12'))
-//     // await insertMatchInfo({
-//     //     fileName: 'fddffff',
-//     //     ratio: 22.22,
-//     //     ip: '12.12.12.12'
-//     // })
-//     // console.log(await fileChecked('沈琪瀚_3200607038_电子信息1班_AI在语音识别行业调查报告(1).docx', '222.18.127.107'))
-//     // console.log(await checkUsability())
-//     // console.log(await setUsing(0));
-//     // await insertFile('fdff', '11.11.11.11');
-//     // console.log(await checkIpInfo('12.12.12.12'))
-//     // // console.log(await insert({
-//     // // ip: '13.13.13.13'
-//     // // }))
-//     // // console.log(await checkFile('fdff', '11.11.11.11'))
-//     // // await insert({ ip: '12.12.12.12' });
-// })()
 
 exports.lockIp = lockIp;
 exports.getFiles = getFiles;

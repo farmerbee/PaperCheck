@@ -12,10 +12,12 @@ router.get('/', async (req, res, next) => {
     // 请求IP访问过并且已经上传过文件
     const ipStatus = await getIpInfo(reqIp),
         fileStatus = await getFiles(reqIp);
-    if (ipStatus && fileStatus[0]) {
+    console.log(ipStatus);
+    console.log(fileStatus[0])
+    if (ipStatus && fileStatus && fileStatus[0]) {
         // IP下文件正在在处理
         if (ipStatus.checking == 1 || fileStatus[0].checked == 1) {
-            res.sendFile(path.join(__dirname, '..', 'views' , 'user.html'));
+            res.sendFile(path.join(__dirname, '..', 'views', 'user.html'));
         }
         // 该IP上传处理过文件，但现在并没有检索该IP
         else {
@@ -35,9 +37,9 @@ router.get('/', async (req, res, next) => {
         res.sendFile(path.join(__dirname, '..', 'views', 'ai.html'))
     }
     // IP访问过，但没有上传过文件
-	else{
+    else {
         res.sendFile(path.join(__dirname, '..', 'views', 'ai.html'))
-	}
+    }
 })
 
 exports.router = router;
