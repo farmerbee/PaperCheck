@@ -32,7 +32,11 @@ async function checkFile(path, times = 0, local = false, pre = 0) {
 			local = true
 		matchDegree = await checkFile(path, times + 1, local, matchDegree);
 	}
-	return matchDegree;
+
+	let secondRes = await searchThread(frags, 10, false);
+	//let secondRes = await checkFile(path);
+	return parseFloat(matchDegree) > parseFloat(secondRes) ? matchDegree : secondRes;
+	//return matchDegree;
 }
 
 // (async function () {

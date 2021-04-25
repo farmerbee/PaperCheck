@@ -662,3 +662,433 @@ match:   36.39
 59.38.223.25:3128
 match:   27.4
 103
+47.107.151.238:8081
+match:   0
+103
+122.138.155.45:9999
+match:   30.9
+103
+47.99.91.112:3128
+match:   0
+103
+49.86.9.62:9999
+match:   35.62
+103
+46.4.147.244:1080
+match:   0
+103
+47.112.152.228:80
+match:   0
+103
+122.5.102.49:9999
+match:   0
+103
+match:   0
+103
+200.24.130.34:8080
+200.24.130.34:8080
+match:   0
+103
+36.56.102.114:9999
+match:   30.62
+103
+36.72.117.172:8080
+match:   0
+103
+202.142.178.98:8080
+TextRow { ip: '222.18.126.67', checking: 1 }
+TextRow {
+  title: '何宇辰_3200604002_工学1班_AI在智慧医疗行业调查报告 - Copy - Copy (100) - Copy - Copy.docx',
+  ratio: 36.37,
+  checked: 1
+}
+[0mGET / [32m200 [0m14.975 ms - 1586[0m
+[0mGET /stylesheets/index.css [36m304 [0m1.244 ms - -[0m
+[0mGET /javascripts/request_result.js [36m304 [0m1.229 ms - -[0m
+[0mGET /favicon.ico [33m404 [0m69.511 ms - 155[0m
+match:   0
+103
+150.129.151.62:6666
+[0mGET /index?files=please [32m200 [0m31.172 ms - 1856[0m
+[0mGET /index?files=please [36m304 [0m31.570 ms - -[0m
+match:   0
+103
+182.253.74.144:8080
+[0mGET /index?files=please [36m304 [0m50.146 ms - -[0m
+[0mGET /index?files=please [36m304 [0m85.829 ms - -[0m
+[0mGET /index?files=please [36m304 [0m61.725 ms - -[0m
+[0mGET /index?files=please [36m304 [0m27.327 ms - -[0m
+[0mGET /index?files=please [36m304 [0m36.926 ms - -[0m
+[0mGET /index?files=please [36m304 [0m70.409 ms - -[0m
+[0mGET /download [32m250 [0m2.868 ms - 4[0m
+[0mGET /index?files=please [36m304 [0m253.540 ms - -[0m
+[0mGET /index?files=please [36m304 [0m60.360 ms - -[0m
+[0mGET /index?files=please [36m304 [0m57.626 ms - -[0m
+[0mGET /index?files=please [36m304 [0m67.760 ms - -[0m
+[0mGET /index?files=please [36m304 [0m53.192 ms - -[0m
+match:   0
+103
+[0mGET /index?files=please [36m304 [0m152.039 ms - -[0m
+58.255.4.13:9999
+[0mGET /index?files=please [36m304 [0m42.364 ms - -[0m
+match:   0
+103
+181.209.99.26:999
+[0mGET /index?files=please [36m304 [0m58.407 ms - -[0m
+[0mGET /index?files=please [36m304 [0m29.532 ms - -[0m
+[0mGET /index?files=please [36m304 [0m26.698 ms - -[0m
+match:   34.74
+[0mGET /index?files=please [32m200 [0m38.336 ms - 1972[0m
+[0mGET /index?files=please [36m304 [0m46.472 ms - -[0m
+match:   36.37
+103
+36.90.119.51:8080
+[0mGET /index?files=please [32m200 [0m25.105 ms - 2088[0m
+103
+[0mGET /index?files=please [36m304 [0m24.504 ms - -[0m
+182.23.27.156:8080
+[0mGET /index?files=please [36m304 [0m34.656 ms - -[0m
+[0mGET /index?files=please [36m304 [0m94.061 ms - -[0m
+[0mGET /index?files=please [36m304 [0m25.485 ms - -[0m
+[0mGET /index?files=please [36m304 [0m68.761 ms - -[0m
+match:   0
+103
+82.114.119.252:1256
+[0mGET /index?files=please [36m304 [0m142.835 ms - -[0m
+[0mGET /index?files=please [36m304 [0m26.212 ms - -[0m
+[0mGET /index?files=please [36m304 [0m34.232 ms - -[0m
+[0mGET /index?files=please [36m304 [0m46.578 ms - -[0m
+match:   40.35
+103
+120.83.104.96:9999
+[0mGET /index?files=please [32m200 [0m551.872 ms - 2204[0m
+[0mGET /index?files=please [36m304 [0m106.538 ms - -[0m
+[0mGET /index?files=please [36m304 [0m58.161 ms - -[0m
+[0mGET /index?files=please [36m304 [0m565.097 ms - -[0m
+[0mGET /index?files=please [36m304 [0m62.580 ms - -[0m
+match:   39.91
+103
+165.16.98.77:80
+[0mGET /index?files=please [32m200 [0m584.158 ms - 2320[0m
+[0mGET /index?files=please [36m304 [0m281.119 ms - -[0m
+[0mGET /index?files=please [36m304 [0m67.597 ms - -[0m
+[0mGET /index?files=please [36m304 [0m76.815 ms - -[0m
+[0mGET /index?files=please [36m304 [0m112.723 ms - -[0m
+[0mGET /index?files=please [36m304 [0m54.898 ms - -[0m
+[0mGET /index?files=please [36m304 [0m107.214 ms - -[0m
+[0mGET /index?files=please [36m304 [0m24.609 ms - -[0m
+match:   0
+103
+51.223.246.231:8080
+[0mGET /index?files=please [36m304 [0m59.096 ms - -[0m
+[0mGET /index?files=please [36m304 [0m36.582 ms - -[0m
+match:   36.37
+103
+177.37.240.52:8080
+[0mGET /index?files=please [32m200 [0m56.129 ms - 2436[0m
+[0mGET /index?files=please [36m304 [0m352.701 ms - -[0m
+[0mGET /index?files=please [36m304 [0m119.976 ms - -[0m
+match:   35.9
+[0mGET /index?files=please [32m200 [0m52.743 ms - 2551[0m
+103
+[0mGET /index?files=please [36m304 [0m25.923 ms - -[0m
+[0mGET /index?files=please [36m304 [0m45.186 ms - -[0m
+119.29.53.21:8081
+[0mGET /index?files=please [36m304 [0m50.354 ms - -[0m
+[0mGET /index?files=please [36m304 [0m68.796 ms - -[0m
+[0mGET /index?files=please [36m304 [0m55.310 ms - -[0m
+[0mGET /index?files=please [36m304 [0m31.147 ms - -[0m
+[0mGET /index?files=please [36m304 [0m53.675 ms - -[0m
+[0mGET /index?files=please [36m304 [0m213.998 ms - -[0m
+[0mGET /index?files=please [36m304 [0m45.685 ms - -[0m
+match:   36.39
+[0mGET /index?files=please [32m200 [0m51.872 ms - 2667[0m
+103
+[0mGET /index?files=please [36m304 [0m136.594 ms - -[0m
+[0mGET /index?files=please [36m304 [0m157.362 ms - -[0m
+[0mGET /index?files=please [36m304 [0m33.445 ms - -[0m
+168.196.192.114:3128
+[0mGET /index?files=please [36m304 [0m33.916 ms - -[0m
+[0mGET /index?files=please [36m304 [0m87.899 ms - -[0m
+[0mGET /index?files=please [36m304 [0m24.640 ms - -[0m
+match:   36.39
+103
+[0mGET /index?files=please [32m200 [0m69.111 ms - 2783[0m
+154.120.65.198:8080
+[0mGET /index?files=please [36m304 [0m28.364 ms - -[0m
+[0mGET /index?files=please [36m304 [0m36.481 ms - -[0m
+[0mGET /index?files=please [36m304 [0m84.038 ms - -[0m
+[0mGET /index?files=please [36m304 [0m84.325 ms - -[0m
+match:   0
+103
+111.1.10.219:9999
+match:   0
+103
+[0mGET /index?files=please [36m304 [0m94.328 ms - -[0m
+[0mGET /index?files=please [36m304 [0m211.512 ms - -[0m
+[0mGET /index?files=please [36m304 [0m165.673 ms - -[0m
+null
+match:   34.29
+[0mGET /index?files=please [32m200 [0m55.211 ms - 2899[0m
+103
+[0mGET /index?files=please [36m304 [0m173.998 ms - -[0m
+36.56.102.114:9999
+[0mGET /index?files=please [36m304 [0m30.854 ms - -[0m
+[0mGET /index?files=please [36m304 [0m51.710 ms - -[0m
+[0mGET /index?files=please [36m304 [0m40.732 ms - -[0m
+[0mGET /index?files=please [36m304 [0m26.197 ms - -[0m
+[0mGET /index?files=please [36m304 [0m25.755 ms - -[0m
+[0mGET /index?files=please [36m304 [0m52.559 ms - -[0m
+[0mGET /index?files=please [36m304 [0m45.313 ms - -[0m
+match:   36.39
+[0mGET /index?files=please [32m200 [0m26.403 ms - 3015[0m
+match:   36.5
+[0mGET /index?files=please [32m200 [0m24.839 ms - 3130[0m
+103
+[0mGET /index?files=please [36m304 [0m32.961 ms - -[0m
+180.149.232.148:8080
+[0mGET /index?files=please [36m304 [0m22.467 ms - -[0m
+[0mGET /index?files=please [36m304 [0m52.514 ms - -[0m
+match:   0
+103
+58.253.156.170:9999
+[0mGET /index?files=please [36m304 [0m34.889 ms - -[0m
+103
+91.206.30.218:3128
+[0mGET /index?files=please [36m304 [0m30.184 ms - -[0m
+[0mGET /index?files=please [36m304 [0m21.233 ms - -[0m
+[0mGET /index?files=please [36m304 [0m32.101 ms - -[0m
+[0mGET /index?files=please [36m304 [0m30.285 ms - -[0m
+[0mGET /index?files=please [36m304 [0m22.459 ms - -[0m
+[0mGET /index?files=please [36m304 [0m23.943 ms - -[0m
+[0mGET /index?files=please [36m304 [0m35.003 ms - -[0m
+[0mGET /index?files=please [36m304 [0m38.561 ms - -[0m
+[0mGET /index?files=please [36m304 [0m25.440 ms - -[0m
+match:   0
+103
+181.129.183.19:53281
+[0mGET /index?files=please [36m304 [0m78.254 ms - -[0m
+[0mGET /index?files=please [36m304 [0m23.640 ms - -[0m
+match:   34.74
+match:   0
+103
+[0mGET /index?files=please [32m200 [0m22.487 ms - 3246[0m
+101.36.160.87:3128
+[0mGET /index?files=please [36m304 [0m25.873 ms - -[0m
+103
+47.99.100.20:8889
+[0mGET /index?files=please [36m304 [0m35.396 ms - -[0m
+[0mGET /index?files=please [36m304 [0m34.175 ms - -[0m
+[0mGET /index?files=please [36m304 [0m64.209 ms - -[0m
+[0mGET /index?files=please [36m304 [0m29.197 ms - -[0m
+[0mGET /index?files=please [36m304 [0m31.290 ms - -[0m
+[0mGET /index?files=please [36m304 [0m36.434 ms - -[0m
+match:   0
+103
+match:   35.62
+[0mGET /index?files=please [32m200 [0m28.444 ms - 3362[0m
+103
+122.138.140.110:9999
+[0mGET /index?files=please [36m304 [0m32.937 ms - -[0m
+165.227.229.14:8080
+[0mGET /index?files=please [36m304 [0m31.304 ms - -[0m
+[0mGET /index?files=please [36m304 [0m50.915 ms - -[0m
+[0mGET /index?files=please [36m304 [0m39.034 ms - -[0m
+[0mGET /index?files=please [36m304 [0m85.795 ms - -[0m
+match:   0
+103
+27.211.193.90:8118
+[0mGET /index?files=please [36m304 [0m68.488 ms - -[0m
+match:   0
+103
+[0mGET /index?files=please [36m304 [0m60.286 ms - -[0m
+182.253.93.5:53281
+[0mGET /index?files=please [36m304 [0m198.926 ms - -[0m
+[0mGET /index?files=please [36m304 [0m25.749 ms - -[0m
+[0mGET /index?files=please [36m304 [0m24.238 ms - -[0m
+[0mGET /index?files=please [36m304 [0m47.050 ms - -[0m
+[0mGET /index?files=please [36m304 [0m62.259 ms - -[0m
+match:   0
+103
+[0mGET /index?files=please [36m304 [0m31.596 ms - -[0m
+35.158.99.103:8084
+[0mGET /index?files=please [36m304 [0m46.316 ms - -[0m
+[0mGET /index?files=please [36m304 [0m50.645 ms - -[0m
+[0mGET /index?files=please [36m304 [0m352.076 ms - -[0m
+match:   36.08
+103
+[0mGET /index?files=please [32m200 [0m54.812 ms - 3478[0m
+36.73.50.220:8080
+[0mGET /index?files=please [36m304 [0m260.674 ms - -[0m
+match:   35.48
+103
+[0mGET /index?files=please [36m304 [0m1568.725 ms - -[0m
+[0mGET /index?files=please [32m200 [0m182.280 ms - 3594[0m
+202.141.233.166:48995
+[0mGET /index?files=please [36m304 [0m60.919 ms - -[0m
+[0mGET /index?files=please [36m304 [0m83.371 ms - -[0m
+[0mGET /index?files=please [36m304 [0m1199.839 ms - -[0m
+[0mGET /index?files=please [36m304 [0m1088.894 ms - -[0m
+[0mGET /index?files=please [36m304 [0m960.611 ms - -[0m
+[0mGET /index?files=please [36m304 [0m110.183 ms - -[0m
+[0mGET /index?files=please [36m304 [0m311.807 ms - -[0m
+[0mGET /index?files=please [36m304 [0m37.032 ms - -[0m
+[0mGET /index?files=please [36m304 [0m74.865 ms - -[0m
+match:   36.39
+[0mGET /index?files=please [32m200 [0m44.362 ms - 3710[0m
+103
+[0mGET /index?files=please [36m304 [0m104.066 ms - -[0m
+103.110.59.219:8080
+[0mGET /index?files=please [36m304 [0m57.405 ms - -[0m
+match:   36.12
+103
+[0mGET /index?files=please [32m200 [0m32.682 ms - 3826[0m
+match:   35.22
+103.146.30.178:8080
+103
+223.199.29.241:3128
+match:   0
+103
+91.107.6.115:53281
+[0mGET /index?files=please [32m200 [0m95.709 ms - 3942[0m
+match:   36.37
+103
+171.35.175.40:9999
+[0mGET /index?files=please [32m200 [0m37.047 ms - 4058[0m
+[0mGET /index?files=please [36m304 [0m73.823 ms - -[0m
+[0mGET /index?files=please [36m304 [0m38.413 ms - -[0m
+[0mGET /index?files=please [36m304 [0m43.996 ms - -[0m
+match:   36.37
+[0mGET /index?files=please [32m200 [0m35.953 ms - 4174[0m
+[0mGET /index?files=please [36m304 [0m49.574 ms - -[0m
+103
+138.185.190.46:8080
+[0mGET /index?files=please [36m304 [0m32.889 ms - -[0m
+[0mGET /index?files=please [36m304 [0m54.430 ms - -[0m
+[0mGET /index?files=please [36m304 [0m26.388 ms - -[0m
+match:   0
+103
+[0mGET /index?files=please [36m304 [0m332.925 ms - -[0m
+139.99.105.5:80
+[0mGET /index?files=please [36m304 [0m768.449 ms - -[0m
+[0mGET /index?files=please [36m304 [0m83.508 ms - -[0m
+[0mGET /index?files=please [36m304 [0m213.956 ms - -[0m
+[0mGET /index?files=please [36m304 [0m115.704 ms - -[0m
+[0mGET /index?files=please [36m304 [0m721.896 ms - -[0m
+[0mGET /index?files=please [36m304 [0m177.261 ms - -[0m
+[0mGET /index?files=please [36m304 [0m268.699 ms - -[0m
+[0mGET /index?files=please [36m304 [0m36.250 ms - -[0m
+match:   35.68
+[0mGET /index?files=please [32m200 [0m126.782 ms - 4290[0m
+match:   36.37
+[0mGET /index?files=please [32m200 [0m128.746 ms - 4406[0m
+103
+200.41.150.83:54958
+103
+[0mGET /index?files=please [36m304 [0m62.049 ms - -[0m
+27.105.130.93:8080
+[0mGET /index?files=please [36m304 [0m40.856 ms - -[0m
+[0mGET /index?files=please [36m304 [0m35.802 ms - -[0m
+match:   33.44
+103
+[0mGET /index?files=please [32m200 [0m29.761 ms - 4522[0m
+match:   33.53
+[0mGET /index?files=please [32m200 [0m34.694 ms - 4638[0m
+[0mGET /index?files=please [36m304 [0m26.562 ms - -[0m
+103
+36.89.89.7:8080
+null
+[0mGET /index?files=please [36m304 [0m66.097 ms - -[0m
+match:   34.69
+[0mGET /index?files=please [32m200 [0m37.587 ms - 4754[0m
+103
+153.36.134.99:9999
+[0mGET /index?files=please [36m304 [0m173.290 ms - -[0m
+[0mGET /index?files=please [36m304 [0m265.077 ms - -[0m
+match:   0
+103
+[0mGET /index?files=please [36m304 [0m61.036 ms - -[0m
+60.191.11.241:3128
+[0mGET /index?files=please [36m304 [0m36.662 ms - -[0m
+match:   0
+103
+113.100.209.171:3128
+[0mGET /index?files=please [36m304 [0m507.085 ms - -[0m
+[0mGET /index?files=please [36m304 [0m38.359 ms - -[0m
+[0mGET /index?files=please [36m304 [0m31.208 ms - -[0m
+match:   0
+103
+182.160.119.155:8080
+[0mGET /index?files=please [36m304 [0m76.365 ms - -[0m
+[0mGET /index?files=please [36m304 [0m69.814 ms - -[0m
+[0mGET /index?files=please [36m304 [0m130.788 ms - -[0m
+[0mGET /index?files=please [36m304 [0m824.044 ms - -[0m
+match:   30.72
+[0mGET /index?files=please [32m200 [0m76.877 ms - 4870[0m
+103
+95.141.36.112:8686
+[0mGET /index?files=please [36m304 [0m230.908 ms - -[0m
+[0mGET /index?files=please [36m304 [0m40.183 ms - -[0m
+[0mGET /index?files=please [36m304 [0m152.504 ms - -[0m
+[0mGET /index?files=please [36m304 [0m107.504 ms - -[0m
+[0mGET /index?files=please [36m304 [0m59.223 ms - -[0m
+[0mGET /index?files=please [36m304 [0m147.710 ms - -[0m
+[0mGET /index?files=please [36m304 [0m35.819 ms - -[0m
+[0mGET /index?files=please [36m304 [0m26.686 ms - -[0m
+[0mGET /index?files=please [36m304 [0m25.825 ms - -[0m
+[0mGET /index?files=please [36m304 [0m77.115 ms - -[0m
+[0mGET /index?files=please [36m304 [0m25.751 ms - -[0m
+match:   36.37
+103
+190.2.212.36:8080
+[0mGET /index?files=please [32m200 [0m42.586 ms - 4986[0m
+[0mGET /index?files=please [36m304 [0m26.615 ms - -[0m
+[0mGET /index?files=please [36m304 [0m40.047 ms - -[0m
+[0mGET /index?files=please [36m304 [0m40.796 ms - -[0m
+[0mGET /index?files=please [36m304 [0m41.632 ms - -[0m
+match:   36.37
+[0mGET /index?files=please [32m200 [0m49.898 ms - 5102[0m
+103
+91.187.117.230:8087
+[0mGET /index?files=please [36m304 [0m27.803 ms - -[0m
+match:   34.5
+[0mGET /index?files=please [32m200 [0m43.804 ms - 5217[0m
+103
+175.44.109.23:9999
+match:   0
+103
+190.2.212.36:8080
+[0mGET /index?files=please [36m304 [0m56.713 ms - -[0m
+[0mGET /index?files=please [36m304 [0m40.709 ms - -[0m
+[0mGET /index?files=please [36m304 [0m22.396 ms - -[0m
+[0mGET /index?files=please [36m304 [0m22.244 ms - -[0m
+[0mGET /index?files=please [36m304 [0m28.073 ms - -[0m
+[0mGET /index?files=please [36m304 [0m25.186 ms - -[0m
+[0mGET /index?files=please [36m304 [0m27.084 ms - -[0m
+[0mGET /index?files=please [36m304 [0m27.207 ms - -[0m
+[0mGET /index?files=please [36m304 [0m25.407 ms - -[0m
+match:   31.56
+[0mGET /index?files=please [32m200 [0m68.609 ms - 5333[0m
+103
+213.182.20.98:8080
+match:   39.23
+[0mGET /index?files=please [32m200 [0m27.831 ms - 5449[0m
+[0mGET /index?files=please [36m304 [0m32.686 ms - -[0m
+[0mGET /index?files=please [36m304 [0m87.073 ms - -[0m
+103
+node:events:342
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:211:20)
+Emitted 'error' event on ClientRequest instance at:
+    at Socket.socketErrorListener (node:_http_client:447:9)
+    at Socket.emit (node:events:365:28)
+    at emitErrorNT (node:internal/streams/destroy:193:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:158:3)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+  errno: -104,
+  code: 'ECONNRESET',
+  syscall: 'read'
+}

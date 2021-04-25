@@ -9,7 +9,7 @@ async function clickSearch(keyword, browser, times = 0) {
         return [0, 0];
     }
     const page = await browser.newPage();
-    page.setDefaultTimeout(50000);
+    page.setDefaultTimeout(40000);
     //page.setDefaultTimeout(0);
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36 Edg/90.0.818.42');
     //屏蔽css,js,png文件的请求
