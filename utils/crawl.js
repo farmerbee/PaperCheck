@@ -118,14 +118,13 @@ async function clickSearch(keyword, browser, times = 0) {
 //对关键字序列进行检索，返回重复度number值，精确到小数点后两位
 async function searchThread(keyList, concurrency, local = false) {
     console.log(keyList.length);
-    //const proxy = await get_proxy('http://42.192.17.154:5555/random');
     let browser = null,
         proxy = null;
     if (!local) {
-        proxy = await getProxy('http://42.192.17.154:5555/random', 15);
+        proxy = await getProxy(PROXY_SERVER, 15);
         // 第一次获取代理失败，则再尝试第二次
         if (!proxy) {
-            proxy = await getProxy('http://42.192.17.154:5555/random', 15);
+            proxy = await getProxy(PROXY_SERVER, 15);
         }
     }
 
@@ -269,11 +268,6 @@ async function getProxy(proxyServer, num = 10) {
 
 
 
-// (async () => {
-//     for (let i = 0; i < 20; i++) {
-//         console.log(await getProxy('http://42.192.17.154:5555/random', 15));
-//         // console.log(await get_proxy('http://42.192.17.154:5555/random'));
-//     }
-// })()
+
 
 module.exports = searchThread;
